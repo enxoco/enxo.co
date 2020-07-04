@@ -1,0 +1,87 @@
+<div class="card card-default widget text-center animated" style="animation-delay: 0.37s;">
+  <div class="card-heading">
+    <div class="card-controls">
+      <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+      <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+    </div>
+    <h3 class="card-title">Social Media Restrictions</h3>
+
+  </div>
+  <div class="card-body">
+
+      <h6 class="restriction-label">Facebook</h6>
+      @if(device.tags.includes('blockFacebook') == true || device.tags.includes('blockSocialMedia'))
+      <button type="button" id="blockFacebook" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+
+       <h6 class="restriction-label"><span style="font-size:12px; color: gray;">
+         (only applies to Facebook when viewed in a browser.  Will not block the Facebook app)
+       </span></h6>
+       @else
+        <button type="button" id="blockFacebook" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        <h6 class="restriction-label"><span style="font-size:12px; color: gray;">
+          (only applies to Facebook when viewed in a browser.  Will not block the Facebook app)
+        </span></h6>
+        @endif
+      <br />
+      <br />
+
+      <h6 class="restriction-label">Twitter</h6>
+      @if(device.tags.includes('blockTwitter') == true || device.tags.includes('blockSocialMedia'))
+       <button type="button" id="blockTwitter" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="blockTwitter" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+
+
+      <h6 class="restriction-label">Snapchat</h6>
+      @if(device.tags.includes('blockSnapchat') == true || device.tags.includes('blockSocialMedia'))
+       <button type="button" id="blockSnapchat" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="blockSnapchat" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+
+      <h6 class="restriction-label">Instagram</h6>
+      @if(device.tags.includes('blockInstagram') == true || device.tags.includes('blockSocialMedia'))
+       <button type="button" id="blockInstagram" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="blockInstagram" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+
+    <!-- Only show these options to users of supervised device -->
+      <h6 class="restriction-label">All of the above</h6>
+
+      @if(device.tags.includes('blockSocialMedia') == true || device.tags.includes('blockSocialMedia'))
+       <button type="button" id="blockSocialMedia" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="true" autocomplete="off">
+                           <div class="handle"></div>
+
+      @else
+       <button type="button" id="blockSocialMedia" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+      @endif
+
+    <!--End Supervised restrictions-->
+     </div><!--/card-body-->
+   </div><!--/card-->

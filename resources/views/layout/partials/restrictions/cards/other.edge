@@ -1,0 +1,40 @@
+<div class="card card-default widget text-center animated" style="animation-delay: 0.37s;">
+  <div class="card-heading">
+    <div class="card-controls">
+      <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+      <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+    </div>
+    <h3 class="card-title">Browsing restrictions</h3>
+
+  </div>
+  <div class="card-body">
+
+      <h6 class="restriction-label">Pause Internet</h6>
+      @if(device.tags.includes('blockInternet') == true || device.tags.includes('blockInternet'))
+      <button type="button" id="blockInternet" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="blockInternet" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+
+      <h6 class="restriction-label">Block all images</h6>
+      @if(device.tags.includes('blockImage') == true || device.tags.includes('blockImage'))
+       <button type="button" id="blockImage" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="blockImage" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+
+
+     </div><!--/card-body-->
+   </div><!--/card-->

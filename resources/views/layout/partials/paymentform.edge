@@ -1,0 +1,52 @@
+  <h4>
+    Step 2:  Enter your card information below to begin your subscription.
+  </h4>
+  <hr>
+  <form action="/subscribe/monthly" method="post" id="payment-form" name="payment-form">
+    {{ csrfField() }}
+
+                    <div class="input-group">
+                      <input type="radio"
+                        name="payment-method"
+                        value="card"
+                        id="payment-method-card"
+                        checked="true"
+                      />
+
+                      <label for="payment-method-card">
+                      <span>$11 Monthly
+                        </span>
+                      </label>
+                      <input type="radio" name="payment-method" value="paypal" id="payment-method-paypal" />
+                      <label for="payment-method-paypal"> <span>$132 Yearly</span></label>
+                    </div>
+
+  <hr>
+  <div class="form-row">
+    <label for="card-element">
+    </label>
+    <input style="margin-bottom: 20px; text-align:center" type="text" id="promoCode" name="promoCode" placeholder="Have a promo code?  Enter it here" />
+<br />
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+
+    <!-- Used to display form errors. -->
+    <div id="card-errors" role="alert"></div>
+
+    <br /><br />
+    <hr>
+    <input type="submit" class="btn btn-success hidden" id="submit" value="submit"/>
+
+    <hr>
+<br />
+    <a id="createToken" class="btn btn-success btn-lg" style="color: white;">Confirm Subscription</a>
+
+  </div>
+  <input id="token" type="hidden" name="stripeToken" value="" />
+  <input type="hidden" name="stripeId" value="{{stripeId}}" />
+  @if(stripe_pk)
+  <input type="hidden" id="stripe_pk" value="{{ stripe_pk }}" name="stripe_pk" />
+  @endif
+  </form>
+  {{script('assets/js/registration-form.js')}}

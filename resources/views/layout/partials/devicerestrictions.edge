@@ -1,0 +1,34 @@
+@layout('layout.master')
+@section('content')
+<div class="page-body"><!-- Start of page body -->
+  <div id="deviceSelectFormHolder"></div>
+  @include('layout.partials.sideNavReporting')
+
+  <div class="container-fluid"><!-- Start page container -->
+    <div class="page-content"><!-- start of page content -->
+
+      <div class="row"><!-- Start Row -->
+        <div class="col-md-4 mx-auto"><!--Device Restrictions-->
+          @include('layout.partials.restrictions.cards.social')
+
+        </div>
+
+        <div class="col-md-4 mx-auto">
+          @include('layout.partials.restrictions.cards.app')
+
+        </div>
+        @if(device.isSupervised && device.isSupervised == true)
+
+          <div class="col-md-4 mx-auto">
+            @include('layout.partials.restrictions.cards.browsers')
+
+          </div>
+          @endif
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+@endsection

@@ -1,0 +1,56 @@
+@layout('layout.master')
+@section('content')
+<style>
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+
+body {
+  background-color: #203a45;
+  font-family: 'Hack', monospace;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.text__error,
+.text__link {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.text__error {
+  margin-top: -35px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 4rem;
+}
+
+.text__link {
+  margin-top: 45px;
+  height: 20px;
+  line-height: 30px;
+  font-size: 2.4rem;
+}
+</style>
+<div class="text__error" data-text="404 page not found"></div>
+<div class="text__link"><a href="/" data-text="click here to go home"></a></div>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="/assets/js/404.js"></script>
+
+
+@endsection

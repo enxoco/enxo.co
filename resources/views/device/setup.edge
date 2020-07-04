@@ -1,0 +1,62 @@
+@layout('layout.master')
+@section('content')
+
+<!-- Per Page information -->
+
+<header id="page-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8 page-title-wrapper">
+        <h1 class="page-title"></h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div id="page-body collapsed">
+  <div class="container-fluid">
+    <div id="page-content">
+      <div class="row"><!-- Start Row -->
+
+
+        <div class="col-md-10 mx-auto"><!-- Start of Device Setup -->
+          <div class="card card-default widget text-center animated" style="animation-delay: 0.37s;">
+            <div class="card-heading">
+            </div>
+            <div class="card-body">
+              <h2 class="title">Setup My Devices</h2>
+              <hr>
+
+              <h4>If you are using an Apple device, click the link below in Safari and
+                follow the onscreen instructions to set up your device.
+                This link should open in a Safari window and will open some prompts
+                on your phone.  This will enroll your device into our Mobile Device
+                Management platform.  <br /><br />This will allow us to remotely install
+                 a VPN profile on your device which will then send all of your web
+                 activity through our secure servers.  Please note that we <strong>do not at
+                    anytime have access to your phone calls, text messages, emails,
+                    or passwords.</strong>  The information that passes through our
+                    secure servers is much the same as what you would see if you were
+                    to view your browsing history on your phone or computer.  <br /><br /><strong>
+                      We do not store personal information on our secure servers</strong> that could be
+                      used to identify you.  Our logs are anoymized and do not contain usernames connected to browsing history.</p>
+<br />
+                      <a style="font-size:20px; padding: 10px 20px;background: #1fb5f6;color: #fff;-ms-box-shadow: 0 3px 6px -1px rgba(0,0,0,.15);-o-box-shadow: 0 3px 6px -1px rgba(0,0,0,.15);box-shadow: 0 3px 6px -1px rgba(0,0,0,.15);"
+                      href="https://m.meraki.com/enroll?id=168-924-8786&tags={{ urlEncode(account.email) }}&pcc_enrollment_code=168-924-8786&page=register">
+                      Setup my Apple Device</a>
+                      <br />
+                <hr>
+                  If you need to set up a Windows device, please email us.
+                </h4>
+          </div>
+        </div> <!-- End Device Setup Card -->
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+@endsection

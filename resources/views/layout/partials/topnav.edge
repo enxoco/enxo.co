@@ -1,0 +1,46 @@
+<nav class="navbar navbar-spark navbar-toggleable navbar-expand-md">
+  <div class="container-fluid">
+
+    <a href="https://enxo.co"><img src="/assets/img/shield_side.jpg" height="50px" right="30px" class="top-logo"></a>
+      <ul class="nav navbar-nav navbar-right">
+        @if(userType)
+        @loggedIn
+        <li class="nav-item">
+
+        <a href="#" class="sidebar-open nav-link d-md-none">Menu</a>
+      </li>
+        <li class="nav-item dropdown">
+          <a href="https://enxo.co" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+        </li>
+        @endloggedIn
+        @endif
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-target="#privacy" data-toggle="modal">Privacy Policy</a>
+
+        </li>
+        @if(userType)
+        @loggedIn
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/account"><i class="ion ion-person"></i> View Profile</a></li>
+<!--               <li><a class="dropdown-item" href="#"><i class="ion ion-chatbubbles"></i> Contacts</a></li>
+          <li><a class="dropdown-item" href="#"><i class="ion ion-email"></i> Mailbox</a></li>
+          <li><a class="dropdown-item" href="#"><i class="ion ion-gear-b"></i> Settings</a></li> -->
+              <li role="separator" class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout"><i class="ion ion-log-out"></i> Sign out</a></li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+
+              <img src="{{ auth.user.toJSON().avatarpath.replace('http://', 'https://') }}" alt="Avatar" width="48" height="48" class="avatar img-circle" />
+          </a>
+        </li>
+        @endloggedIn
+        @endif
+      </ul>
+  </div><!--End Container-->
+
+</nav><!--End Navigation-->

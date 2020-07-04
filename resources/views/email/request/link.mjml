@@ -1,0 +1,62 @@
+<mjml>
+  <mj-body background-color="#d6dde5">
+    <mj-section locked="true" padding-bottom="20px" padding-top="20">
+      <mj-column width="100%" vertical-align="middle">
+        <mj-text align="left" color="#000000" font-family="Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif" font-size="11px" locked="true" editable="true" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0"><span style="font-size: 11px">Enxo accountability request</span></mj-text>
+      </mj-column>
+
+    </mj-section>
+    <mj-section background-color="#213A44" padding-bottom="20px" padding-top="20">
+      <mj-column width="100%" vertical-align="top">
+        <mj-image href="https://mjml.io" src="https://res.cloudinary.com/themurphs/image/upload/c_scale,w_182/v1537539909/18-ENXO-Stacked-WhiteText_czv01t.png" alt="Enxo Logo" align="center" border="none" width="182px" padding-left="0px" padding-right="0px" padding-bottom="0px"
+          padding-top="0"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#3E555C" padding-bottom="27px" padding-top="0">
+      <mj-column width="80%" vertical-align="top">
+        <mj-text align="left" color="#000000" font-family="Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif" font-size="13px" padding-left="50px" padding-right="50px" padding-bottom="25px" padding-top="0">
+          <p><span style="font-size: 27px;"><span style="font-weight: bold;"><span style="color: rgb(255, 255, 255);">Hello {{toName}}, <br /><br /> {{fromName}} has requested you as an accountability partner</span></span>
+            </span>
+          </p>
+          <p><span style="font-weight: bold;"><span style="color: rgb(255, 255, 255);"><span style="font-size: 27px;"></span></span>
+            </span>
+          </p>
+        </mj-text>
+        <mj-image href="https://enxo.co" src="https://res.cloudinary.com/themurphs/image/upload/c_scale,w_200/v1539733332/email-icons/support_1.png" alt="Accountability request" align="center" border="none" width="182px" padding-left="0px" padding-right="0px"
+          padding-bottom="25px" padding-top="0"></mj-image>
+        <mj-button background-color="#fb3d39" color="#FFFFFF" font-size="18px" align="center" vertical-align="middle" border="none" padding="15px 30px" border-radius="3px" href="{{link}}" font-family="Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif"
+          padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="70">CONFIRM</mj-button>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#3E555C" padding-bottom="20px" padding-top="20">
+      <mj-column width="100%" vertical-align="top">
+        <mj-text align="center" color="#fff" font-family="Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif" font-size="13px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10">
+          <p>If you don't already have an account</p>
+          <p>You will be asked to create a free one</p>
+          <p>Any questions, comments, concerns?</p>
+          <p>Contact our support staff at <a href="https://enxo.co" style="text-decoration: none; color: inherit;"><span style="font-weight: bold;">support@enxo.freshdesk.com</span></a></p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#213A44" padding-bottom="0px" padding-top="0">
+      <mj-column width="33.33333333333333%" vertical-align="top">
+        <mj-image href="https://enxo.co" src="https://res.cloudinary.com/themurphs/image/upload/c_scale,w_50/v1531002186/oeyu6hlr8aylimbwn4gd.png" alt="Enxo Shield" align="center" border="none" width="50px" padding-left="25px" padding-right="25px" padding-bottom="10px"
+          padding-top="10"></mj-image>
+      </mj-column>
+      <mj-column width="33.33333333333333%" vertical-align="top">
+        <mj-text align="center" color="#000000" font-family="Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif" font-size="13px" padding-left="25px" padding-right="25px" padding-bottom="10px" padding-top="10">
+          <p><a href="https://enxo.co/privacy" style="text-decoration: none; color: inherit;"><span style="color: rgb(255, 255, 255);">Privacy policy</span></a></p>
+        </mj-text>
+      </mj-column>
+
+    </mj-section>
+    <mj-section locked="true" padding-bottom="20px" padding-top="20">
+      <mj-column width="100%" vertical-align="middle">
+
+        <mj-text align="center" color="#000000" font-family="Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif" font-size="11px" locked="true" editable="true" type="user-address" padding-left="25px" padding-right="25px" padding-bottom="0px" padding-top="0">
+          <p style="font-size:11px">Enxo LLC <br />3530 Broad Street <br />Chattanooga TN, 37409</p>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>

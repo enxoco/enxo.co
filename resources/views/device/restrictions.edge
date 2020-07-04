@@ -1,0 +1,42 @@
+
+@layout('layout.master')
+
+@section('content')
+
+
+
+<input type="hidden" id="deviceId" value="{{ devices[0].id }}">
+<div class="page-body">
+  <div class="container-fluid">
+    <div class="page-content">
+      <div class="row"><!-- Start Row -->
+
+        <div class="col-md-8 mx-auto">
+          @each(d in devices)
+          <div class="card card-default widget text-center animated" style="animation-delay: 0.37s;">
+            <div class="card-heading">
+              <div class="card-controls">
+                <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+              </div>
+              <h3 class="card-title">Device name: {{ d.name }} <br />
+                Device Type:{{ d.systemModel }}</h3>
+
+            </div>
+            <div class="card-body">
+                <h6 class="restriction-label">label {{ restrictions }}</h6>
+                @each(d in devices)
+                {{ d.tags }}
+                @endeach
+               </div><!--/card-body-->
+             </div><!--/card-->
+             @endeach
+        </div><!--/col-md-8 mx-auto-->
+      </div><!--/row-->
+    </div><!--/page-content-->
+
+  </div><!--/container-fluid-->
+</div><!--/page body-->
+
+
+@endsection

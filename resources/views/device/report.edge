@@ -1,0 +1,124 @@
+@layout('layout.master')
+@section('content')
+<div class="page-body"><!-- Start of page body -->
+  @include('layout.partials.sideNavReporting')
+
+  <div class="container-fluid"><!-- Start page container -->
+    <div class="page-content"><!-- start of page content -->
+      <div class="row"><!-- Start Row -->
+        <div class="col-md-8 mx-auto page-title-wrapper">
+          @include('layout.alerts')
+          <input type="hidden" id="loggedInUserId" value="{{ loggedInUser[0]}}" />
+          <input type="hidden" id="loggedInUserType" value="{{ loggedInUser[1]}}" />
+          <input type="hidden" id="hasDevices" value="1" />
+        </div>
+        {{-- User has been confirmed and has a subscription but does not have any devices yet.  Show them device setup. --}}
+        <div class="col-md-7"><!-- Start of Device Setup -->
+          @include('layout.partials.topsiteschart')
+          <div class="card card-default widget text-left animated hasDevices" style="animation-delay: 0.47s;">
+            <div class="card-heading">
+              <div class="card-controls">
+                <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+              </div>
+              <h3 class="card-title">Flagged Searches
+                <div id="reportrange" style="padding-top:13px;"><span></span></div>
+              </h3>
+
+            </div>
+            <div class="card-body">
+              <table id="explicitSearchesTable" class="display table table-striped table-bordered table-hover dt-responsive" cellspacing="0"></table>
+
+            </div>
+          </div>
+          {{-- @include('layout.partials.partners') --}}
+          @include('layout.partials.devicesCard')
+        </div> <!-- End Device Setup Card -->
+        <div class="col-md-5">
+          @if(smDevices.length != 0 || devices.length != 0)
+          @unless(userType === 'viewer')
+            @if(hidePartners === 1)
+            @else
+            @include('layout.partials.partnersCard')
+            @endif
+          @endunless
+          <div class="card card-default widget text-left animated hasDevices" style="animation-delay: 0.37s;">
+            <div class="card-heading">
+              <div class="card-controls">
+                <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+              </div>
+              <h3 class="card-title">Browsing History
+                <div id="reportrange" style="padding-top:13px;"><span></span></div>
+              </h3>
+
+            </div>
+              <div class="card-body">
+                <table id="emailTopHitsTable" class="display table table-striped table-bordered table-hover dt-responsive" cellspacing="0"></table>
+              </div>
+          </div>
+          <div class="card card-default widget animated hasDevices" style="animation-delay: 0.57s;">
+            <div class="card-heading text-left">
+              <div class="card-controls">
+                <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+              </div>
+              <h3 class="card-title">Questionable Sites
+                <div id="reportrange" style="padding-top:13px;"><span></span></div>
+              </h3>
+
+            </div>
+            <div class="card-body">
+
+              <table id="potentialPorn" class="display table table-striped table-bordered table-hover dt-responsive no-footer dataTable" cellspacing="0"></table>
+            </div>
+          </div>
+          @else
+          @unless(userType === 'viewer')
+            @include('layout.partials.partnersCard')
+          @endunless
+          <div class="card card-default widget text-left animated hasDevices" style="animation-delay: 0.37s;">
+            <div class="card-heading">
+              <div class="card-controls">
+                <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+              </div>
+              <h3 class="card-title">Browsing History
+                <div id="reportrange" style="padding-top:13px;"><span></span></div>
+              </h3>
+
+            </div>
+              <div class="card-body">
+                <table id="emailTopHitsTable" class="display table table-striped table-bordered table-hover dt-responsive" cellspacing="0"></table>
+              </div>
+          </div>
+          <div class="card card-default widget animated hasDevices" style="animation-delay: 0.57s;">
+            <div class="card-heading text-left">
+              <div class="card-controls">
+                <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+                <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+              </div>
+              <h3 class="card-title">Questionable Sites
+                <div id="reportrange" style="padding-top:13px;"><span></span></div>
+              </h3>
+
+            </div>
+            <div class="card-body">
+
+              <table id="potentialPorn" class="display table table-striped table-bordered table-hover dt-responsive" cellspacing="0"></table>
+            </div>
+          </div>
+          @if(toPartners.length === 0 && userType === 'subscriber')
+            @include('layout.partials.invitecard')
+          @else
+          @endif
+          @endif
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+@endsection

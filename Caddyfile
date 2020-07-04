@@ -1,0 +1,12 @@
+nxone.co 
+proxy / localhost:3333
+gzip
+minify
+
+git [repo path] {
+	repo        https://github.com/enxoco/enxoert
+	path        ~/enxoert
+	branch      master
+	key         /home/ubuntu/production_web
+	interval    3600
+}

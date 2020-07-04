@@ -1,0 +1,110 @@
+@layout('layout.master')
+@section('content')
+
+<div class="page-body"><!-- Start of page body -->
+  @include('layout.partials.sidenav')
+
+  <div class="container-fluid"><!-- Start page container -->
+    <div class="page-content"><!-- start of page content -->
+      <div class="row"><!-- Start Row -->
+
+        <div class="col-md-4"><!-- Start of Device Setup -->
+          <div class="card card-default widget text-center animated" style="animation-delay: 0.37s;">
+            <div class="card-heading">
+            </div>
+            <div class="card-body">
+              <h2 class="title">Setup My Windows Computer</h2>
+              <hr>
+              <p>Click the link below to download our Guardrails Installer app.  This will set up your Mac to connect to our secure servers.
+                  Please note that we <strong>do not at
+                      anytime have access to your phone calls, text messages, emails,
+                      or passwords.</strong>  The information that passes through our
+                      secure servers is much the same as what you would see if you were
+                      to view your browsing history on your phone or computer.  <br /><br /><strong>
+                        We do not store personal information on our secure servers</strong> that could be
+                        used to identify you.  Our logs are anoymized and do not contain usernames connected to browsing history.</p>
+              <p></p>
+<br />
+                      <a style="font-size:20px; padding: 10px 20px;background: #1fb5f6;color: #fff;-ms-box-shadow: 0 3px 6px -1px rgba(0,0,0,.15);-o-box-shadow: 0 3px 6px -1px rgba(0,0,0,.15);box-shadow: 0 3px 6px -1px rgba(0,0,0,.15);"
+                      href="https://github.com/enxoco/Enxo-Desktop/releases/download/v0.1/Enxo.Desktop.Installer.Setup.0.0.1.exe">
+                      Download</a>
+                      <br />
+                <hr>
+              </p>
+          </div>
+        </div> <!-- End Device Setup Card -->
+
+
+      </div>
+      <div class="col-md-6">
+        <div class="card card-default widget text-center animated" style="animation-delay: 0.37s;" >
+          <div class="card-heading">
+          </div>
+          <div class="card-body">
+            <div class="col-md-12 heroSlider-fixed">
+                  <div class="overlay">
+                </div>
+                   <!-- Slider -->
+                  <div class="slider responsive">
+                    <div>
+          						<h1>Step 1</h1>
+          						<p>Download and run the installer.  <br /><strong>Then click Yes to continue</strong>
+          						<img width="400px" height="auto" src="https://raw.githubusercontent.com/enxoco/Enxo-Desktop/master/step1.png" alt="" />
+          					</div>
+          					<div>
+          						<h1>Step 2</h1>
+                      <p>Enter the email address and password associated with your Enxo account, then click Login to continue.</p>
+          						<img width="400px" height="auto" src="https://raw.githubusercontent.com/enxoco/Enxo-Desktop/master/step2.png" alt="" />
+          					</div>
+          					<div>
+          						<h1>Step 3</h1>
+                      <p>Click on Setup to have your computer automatically configured.</p>
+          						<img width="400px" height="auto" src="https://raw.githubusercontent.com/enxoco/Enxo-Desktop/master/step3.png" alt="" />
+          					</div>
+          										<div>
+          						<h1>Step 4</h1>
+                      <p>If everything was set up properly you should see the following screen.  You can click the Check Protection button to make sure Guardrails has been enabled.</p>
+          						<img width="400px" height="auto" src="https://raw.githubusercontent.com/enxoco/Enxo-Desktop/master/step4.png" alt="" />
+          					</div>
+          					<div>
+          						<h1>Step 5</h1>
+                      <p>You should see a block screen similiar to the picture below.  You can now close out of the app.</p>
+          						<img width="400px" height="auto" src="https://raw.githubusercontent.com/enxoco/Enxo-Desktop/master/step5.png" alt="" />
+          					</div>
+
+                  </div>
+          				 <!-- control arrows -->
+          				<div class="prev">
+          					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          				</div>
+          				<div class="next">
+          					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          				</div>
+
+                </div>
+
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+</div>
+      <script>
+      var activeOld = 1;
+var activeSave = 1;
+function slide(active) {
+  activeOld = activeSave;
+  activeSave = active;
+  document.getElementById("knob-" + activeOld).classList.remove("active")
+  document.getElementById("knob-" + active).classList.add("active")
+
+  document.getElementById("num" + activeOld).classList.remove("active");
+  document.getElementById("num" + active).classList.add("active");
+}
+</script>
+    </div>
+  </div>
+
+</div>
+</div>
+@endsection

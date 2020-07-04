@@ -1,0 +1,213 @@
+@layout('layout.master')
+
+@section('content')
+
+<header id="page-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8 page-title-wrapper">
+        <h1 class="page-title">Enxo Dashboard</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="page-body">
+<div class="container-fluid">
+
+<div id="page-content">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card card-default widget text-center animated" style="animation-delay: 0.37s;">
+        <div class="card-heading">
+          <h3 class="card-title">
+            Step 1: Create an account
+          </h3>
+        </div>
+        <div class="card-body">
+          <p>Please fill out this form to create your account.</p>
+          <p>Once your account is created, you will need to login to complete the process.</p>
+
+          @include('layout.alerts')
+  					@if(user.managed_user_id)
+  						<form method="POST" action="{{ route('register.storePartner') }}">
+  					@else
+  						<form method="POST" action="{{ route('register.store') }}">
+  					@endif
+  						{{ csrfField() }}
+  						<div class="form-group row">
+  							<label class="col-md-3 col-form-label" for="name">
+  								Name
+  							</label>
+  							<div class="col-md-6">
+  							    @if(request.name)
+  									  <input type="text" name="name" placeholder="Name" id="name"
+  										class="form-control {{ elIf('is-invalid', getErrorFor('name'), hasErrorFor('name')) }}"
+  										value="{{ user.name }}">
+  										@else
+  									<input type="text" name="name" placeholder="Name" id="name"
+  										class="form-control {{ elIf('is-invalid', getErrorFor('name'), hasErrorFor('name')) }}"
+  										value="">
+  										@endif
+
+  									<div class="invalid-feedback">{{ getErrorFor('name') }}</div>
+  								</div>
+  							</div>
+  							<div class="form-group row">
+  								<label class="col-md-3 col-form-label" for="email">
+  									E-Mail Address
+  								</label>
+  								<div class="col-md-6">
+  								@if(user.email)
+  									<input type="email" name="email" placeholder="Email" id="email"
+  										class="form-control {{ elIf('is-invalid', getErrorFor('email'), hasErrorFor('email')) }}"
+  										value="{{ old('email', user.email) }}">
+  								@else
+  								<input type="email" name="email" placeholder="Email" id="email"
+  										class="form-control {{ elIf('is-invalid', getErrorFor('email'), hasErrorFor('email')) }}"
+  										value="{{ old('email', '') }}">
+  								@endif
+  									<div class="invalid-feedback">{{ getErrorFor('email') }}</div>
+  								</div>
+  							</div>
+  							<div class="form-group row">
+  								<label class="col-md-3 col-form-label"
+  									   for="password">Password</label>
+  								<div class="col-md-6">
+  									<input type="password" name="password" placeholder="Password" id="password"
+  										class="form-control {{ elIf('is-invalid', getErrorFor('password'), hasErrorFor('password')) }}">
+  									<div class="invalid-feedback">{{ getErrorFor('password') }}</div>
+  								</div>
+  							</div>
+  							<div class="form-group row">
+  								<label class="col-md-3 col-form-label" id="password_confirmation">
+  									Confirm Password
+  								</label>
+  								<div class="col-md-6">
+  									<input type="password" placeholder="Password" name="password_confirmation" id="password_confirmation"
+  										class="form-control {{ elIf('is-invalid', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}">
+  									<div class="invalid-feedback">{{ getErrorFor('password_confirmation') }}</div>
+  								</div>
+  							</div>
+  							@if(user.managed_user_id)
+  							<input type="hidden" name="managed_user_id" value="{{ user.managed_user_id }}">
+  							<input type="hidden" name="token" value="{{ user.token }}">
+  							@endif
+  							<div class="form-group row">
+  								<div class="col-md-3"></div>
+  								<div class="col-md-6">
+  									<button type="submit" class="btn btn-success btn-block btn-lg">
+  										<i class="fa fa-btn fa-user"></i> Next Step
+  									</button>
+  								</div>
+  							</div>
+  						</div>
+        </div>
+      </div><!--/Form Column-->
+    <div class="col-md-4"><!--Stripe column-->
+      <div class="card-overlay">
+        <div class="card card-default widget text-center animated" style="animation-delay: 1.37s;">
+          <div class="card-heading">
+            <h3 class="card-title">Step 2:  Choose how to pay</h3>
+          </div>
+          <div class="card-body">
+            <p>You can choose to pay monthly or yearly, whichever is more convenient for you.</p>
+            <p>If you choose the monthly plan, your card will be charged today and on the <strong>{{ todayDate }}</strong> of every month.</p>
+              <form id="monthly" action="/subscribe/monthly" method="POST">
+              {{ csrfField() }}
+                  <script defer src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="pk_live_Bi2MabrHOBHmRogvBzy9IQel"
+                      data-amount="1100"
+                      data-name="Enxo Monthly Subscription"
+                      data-description="Monthly Subscription"
+                      data-image=""
+                      data-label="Pay Monthly"
+                      data-email="{{ email }}"
+                      data-locale="auto">
+                  </script>
+              </form>
+              <br /> <br />
+              <p>If you choose the yearly plan, your card will be charged today and on <strong>{{ yearDate }} of next year</strong> unless you contact us to cancel before that day.</p>
+
+                <form action="/subscribe/yearly" method="POST">
+                {{ csrfField() }}
+                <script defer src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_live_Bi2MabrHOBHmRogvBzy9IQel"
+                    data-amount="13200"
+                    data-name="Enxo Early Adopter Plan"
+                    data-description="1 year of Enxo service"
+                    data-image=""
+                    data-label="Pay Yearly"
+                    data-email="{{ email }}"
+                    data-id="12"
+                    data-locale="auto">
+                </script>
+              </form>
+          </div>
+        </div>
+      </div><!--/overlay card-->
+    </div><!--/Stripe column-->
+
+    <div class="col-md-4">
+      <div class="card card-default widget text-center animated" style="animation-delay: 2.37s;">
+        <div class="card-heading">
+          <div class="card-controls">
+            <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+            <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+          </div>
+          <h3 class="card-title">Setup your devices</h3>
+
+        </div>
+        <div class="card-body">
+          <p>
+            We currently support Apple Devices as well as Windows Computers/Tablets.  We <strong>do not</strong> support Android devices.
+            Please be aware of this before signing up.</p>
+          <p>If you are using an Apple device, click the link below in Safari and follow the onscreen instructions to set up your device.
+              If you need to set up a Windows device, please email us.
+              This link should open in a Safari window and will open some prompts on your phone.
+              <br />
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#basicModal">iPhone/iPad</button>
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#basicModal">Macbook</button>
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#basicModal">Windows Computer/Tablet</button>
+
+              </div>
+              <button type="button" class="btn btn-lg btn-danger" data-toggle="modal" data-target="#basicModal">How does it work?</button>
+              <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal">How does it work?</a>
+
+        </div>
+      </div>
+    </div><!--/Device Setup-->
+
+
+        </div><!--/First row-->
+
+      </div><!--/Page Content-->
+    </div><!--/container-->
+  </div><!--/page body-->
+
+  <!-- basic modal -->
+  <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModalLabel">Technical Details</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          This process will enroll your device into our Mobile Device Management platform allowing us to remotely install a VPN profile on your device.  This VPN profile will cause all of your web activity to be routed through our secure servers.  Please note that we <strong>do not at anytime have access to your phone calls, text messages, emails, or passwords.</strong>  The information that passes through our secure server is much the same as what you would see if you were to view your browsing history on your phone or computer.  <br /><br /><strong>We do not store personal information on our servers</strong> that could be used to identify you.  Our logs are anoymized and do not contain usernames connected to browsing history.</p>
+        </div>
+        <div class="modal-footer">
+          {{-- <button type="button" class="btn btn-default" data-dismiss="modal">View our full Privacy Policy</button> --}}
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+@endsection

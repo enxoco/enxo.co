@@ -1,0 +1,56 @@
+@layout('layout.master')
+@section('content')
+
+<!-- Per Page information -->
+
+<header id="page-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-10 page-title-wrapper">
+        <h1 class="page-title">500 error</h1>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <div id="page-body">
+    <div class="container-fluid">
+      <div id="page-content">
+        <div class="row"><!-- Start Row -->
+
+          <div class="col-md-8 mx-auto"><!-- Start of invite card -->
+            <div class="card card-default widget text-center">
+            <div class="card-body"><br /><br />
+
+              <div class="alert role="alert">
+              <h2>Sorry something went wrong...<br />  Let us know what you were trying to do<br /> and we'll look into it!
+              </div>
+
+                <form class="contact-form" id="contact-form" name="contact-form">
+                  {{ csrfField() }}
+                                                <div class="form-group">
+                                                        <label for="name" class="sr-only">Name</label>
+                                                        <input type="name" class="form-control" id="name" name="name" placeholder="Name">
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="email" class="sr-only">Email</label>
+                                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                                </div>
+                                                <div class="form-group">
+                                                        <label for="message" class="sr-only">Message</label>
+                                                        <textarea class="form-control" id="message" rows="7" name="message" placeholder="Message"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                        <input type="submit" id="btn btn-success btn-lg" class="btn btn-send-message btn-md" value="Send Message">
+                                                </div>
+                                        </form>
+              
+              <a class="btn btn-danger btn-lg" href="/dashboard">Go back home</a>
+            </div>
+            </div>
+          </div> <!-- End Invite card -->
+</div>
+  <!-- end of page content -->
+  @endsection

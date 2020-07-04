@@ -1,0 +1,124 @@
+@layout('layout.master')
+@section('content')
+
+<div class="page-body"><!-- Start of page body -->
+  @include('layout.partials.sidenav')
+
+  <div class="container-fluid"><!-- Start page container -->
+    <div class="page-content"><!-- start of page content -->
+      <div class="row"><!-- Start Row -->
+
+        <div class="col-md-6"><!-- Start of Device Setup -->
+          <div class="card card-default widget text-center animated" style="animation-delay: 0.37s;">
+            <div class="card-heading">
+            </div>
+            <div class="card-body">
+              <h2 class="title">Setup My iOS device</h2>
+              <hr>
+
+              <p>Click the link below in Safari and
+                follow the onscreen instructions to set up your device.
+                This link should open in a Safari window and will open some prompts
+                on your phone.  This will enroll your device into our Mobile Device
+                Management platform.  <br /><br />This will allow us to remotely install
+                 a VPN profile on your device which will then send all of your web
+                 activity through our secure servers.  Please note that we <strong>do not at
+                    anytime have access to your phone calls, text messages, emails,
+                    or passwords.</strong>  The information that passes through our
+                    secure servers is much the same as what you would see if you were
+                    to view your browsing history on your phone or computer.  <br /><br /><strong>
+                      We do not store personal information on our secure servers</strong> that could be
+                      used to identify you.  Our logs are anoymized and do not contain usernames connected to browsing history.</p>
+<br />
+                      <a style="font-size:20px; padding: 10px 20px;background: #1fb5f6;color: #fff;-ms-box-shadow: 0 3px 6px -1px rgba(0,0,0,.15);-o-box-shadow: 0 3px 6px -1px rgba(0,0,0,.15);box-shadow: 0 3px 6px -1px rgba(0,0,0,.15);"
+                      href="https://m.meraki.com/enroll?id=168-924-8786&tags={{ urlEncode(account.email) }}&pcc_enrollment_code=168-924-8786&page=register">
+                      Setup my Apple Device</a>
+                      <br />
+                <hr>
+              </p>
+          </div>
+        </div> <!-- End Device Setup Card -->
+
+
+      </div>
+      <div class="col-md-6">
+        <div class="card card-default widget text-center animated" style="animation-delay: 0.37s;" >
+          <div class="card-heading">
+          </div>
+          <div class="card-body">
+            <div class="col-md-12 heroSlider-fixed">
+                  <div class="overlay">
+                </div>
+                   <!-- Slider -->
+                  <div class="slider responsive">
+                    <div>
+          						<h1>Step 1</h1>
+          						<p>This screen will show up when you first open the link in Safari.  <br /><strong>Tap Allow to continue</strong>
+          						<img src="https://res.cloudinary.com/themurphs/image/upload/q_85/v1539802936/device-setup/step1.jpg" alt="" />
+          					</div>
+          					<div>
+          						<h1>Step 2</h1>
+                      <p>Tap Install in the upper right corner to continue</p>
+          						<img src="https://res.cloudinary.com/themurphs/image/upload/q_85/v1539802936/device-setup/step2.jpg" alt="" />
+          					</div>
+          					<div>
+          						<h1>Step 3</h1>
+                      <p>If your device has a passcode set up, you will be asked to enter it here.</p>
+          						<img src="https://res.cloudinary.com/themurphs/image/upload/q_85/v1539802936/device-setup/step3.jpg" alt="" />
+          					</div>
+          										<div>
+          						<h1>Step 4</h1>
+                      <p>Tap Install to continue</p>
+          						<img src="https://res.cloudinary.com/themurphs/image/upload/q_85/v1539802936/device-setup/step4.jpg" alt="" />
+          					</div>
+          					<div>
+          						<h1>Step 5</h1>
+                      <p>You will be presented with a disclaimer from our MDM provider.<br />  <strong>Tap Install to continue</strong></p>
+          						<img src="https://res.cloudinary.com/themurphs/image/upload/q_85/v1539802936/device-setup/step5.jpg" alt="" />
+          					</div>
+                    <div>
+                      <h1>Step 6</h1>
+                      <p><strong>Tap Trust to continue</strong></p>
+                      <img src="https://res.cloudinary.com/themurphs/image/upload/q_85/v1539802936/device-setup/step6.jpg" alt="" />
+                    </div>
+                    <div>
+                      <h1>Step 7</h1>
+                      <p>That's it!  Your device is now setup.<br /> You can close out of this tab now.</p>
+                      <img src="https://res.cloudinary.com/themurphs/image/upload/q_85/v1539802936/device-setup/step7.jpg" alt="" />
+                    </div>
+                  </div>
+          				 <!-- control arrows -->
+          				<div class="prev">
+          					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          				</div>
+          				<div class="next">
+          					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          				</div>
+
+                </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+      <script>
+      var activeOld = 1;
+var activeSave = 1;
+function slide(active) {
+  activeOld = activeSave;
+  activeSave = active;
+  document.getElementById("knob-" + activeOld).classList.remove("active")
+  document.getElementById("knob-" + active).classList.add("active")
+
+  document.getElementById("num" + activeOld).classList.remove("active");
+  document.getElementById("num" + active).classList.add("active");
+}
+
+
+</script>
+    </div>
+  </div>
+
+</div>
+</div>
+@endsection

@@ -1,0 +1,116 @@
+@layout('layout.master')
+@section('content')
+
+
+  <div class="page-body">
+    <div class="container-fluid">
+      <div class="page-content">
+        <div class="row">
+          @each(device in claimedDevices)
+            <div class="col-md-3">
+              <div class="card card-default text-center expand-column" id="expand-column"><!--Start first card-->
+                <div class="card-body">
+                  <form method="POST" action="{{ route('admin.updateDevice') }}">
+                  {{ csrfField() }}
+                    <select class="form-control" id="exampleSelect1" name="userId">
+                      <option selected="{{device.userId}}" value="{{device.userId}}">{{ device.name }}</option>
+                        @each(user in users)
+                          <option value="{{ user.id }}" name="user_id">{{ user.name }} - id: {{ user.id }}</option>
+                        @endeach
+                    </select>
+                </div>
+                <div class="card-body">
+                  <label for="exampleSelect1">Device Id</label>
+                    <input type="text" name="deviceId" value="{{ device.deviceId }}">
+
+                  <label for="exampleSelect1">Serial Number</label>
+                    <input type="text" name="serial_number" value="{{device.serial_number}}">
+
+                  <label>Device Type</label>
+                    <select class="form-control" id="exampleSelect1" name="device_type">
+                      <option selected="{{device.device_type}}" value="{{device.device_type}}">{{ device.device_type }}</option>
+                      <option>Android Phone</option>
+                      <option>Android Tablet</option>
+                      <option>iPad</option>
+                      <option>iPhone</option>
+                      <option>iPhone 6</option>
+                      <option>iPhone 6s</option>
+                      <option>iPhone 6s Plus</option>
+                      <option>iPhone 7</option>
+                      <option>iPhone 7s</option>
+                      <option>iPhone 7s Plus</option>
+                      <option>iPhone 8</option>
+                      <option>iPhone 8 Plus</option>
+                      <option>iPhone X</option>
+                      <option>MacBook</option>
+                      <option>MacBook Air</option>
+                      <option>MacBook Pro</option>
+                    </select>
+                    <br />
+                    <button type="submit" class="btn btn-success btn-lg">Save</button>
+                  <a class="btn btn-danger" href="/device/remove/{{device.deviceId}}"> Remove</a>
+                  </form>
+                  </div><!--/card body-->
+
+              </div><!--/card-->
+          </div><!--/col-->
+          @endeach
+
+          <div class="col-md-6">
+            <div class="card card-default">
+              <form method="POST" action="{{ route('admin.addDevice') }}">
+              {{ csrfField() }}
+                <div class="card-heading">
+                    <h2 class="card-title">Add Device</h2>
+                </div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <select class="form-control" id="exampleSelect1" name="userId">
+                       @each(user in users)
+                          <option value="{{ user.id }}" name="user_id">{{ user.name }}</option>
+                        @endeach
+                    </select>
+                  </div>
+                      <label for="exampleSelect1">Device Id</label>
+                        <input type="text" name="deviceId">
+
+                      <label for="exampleSelect1">Serial Number</label>
+                        <input type="text" name="serial_number">
+
+                      <label>Device Type</label>
+                        <select class="form-control" id="exampleSelect1" name="device_type">
+                          <option selected="{{device.device_type}}" value="{{device.device_type}}">{{ device.device_type }}</option>
+                          <option>Android Phone</option>
+                          <option>Android Tablet</option>
+                          <option>iPad</option>
+                          <option>iPhone</option>
+                          <option>iPhone 6</option>
+                          <option>iPhone 6s</option>
+                          <option>iPhone 6s Plus</option>
+                          <option>iPhone 7</option>
+                          <option>iPhone 7s</option>
+                          <option>iPhone 7s Plus</option>
+                          <option>iPhone 8</option>
+                          <option>iPhone 8 Plus</option>
+                          <option>iPhone X</option>
+                          <option>MacBook</option>
+                          <option>MacBook Air</option>
+                          <option>MacBook Pro</option>
+                        </select>
+                        <br />
+                      <button type="submit" class="btn btn-success btn-block">Add</button>
+                </form>
+            </div>
+          </div>
+
+
+          </div><!--/main row-->
+          </div><!--/page-content-->
+      </div><!--/container-->
+    </div><!--/page-body-->
+  </div>
+
+
+
+
+@endsection

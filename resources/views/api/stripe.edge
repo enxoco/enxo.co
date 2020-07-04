@@ -1,0 +1,94 @@
+@layout('layout.master')
+@section('content')
+
+<!-- Per Page information -->
+
+<header id="page-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8 page-title-wrapper">
+        <h1 class="page-title">Hello {{ name }}!</h1>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div id="page-body">
+  <div class="container-fluid">
+
+    <!-- start of page content -->
+    <div id="page-content">
+
+      <div class="row"><!-- Start Row -->
+        <div class="col-md-12"><!-- Start column 2 -->
+          <div class="card card-default widget text-center">
+            <div class="card-heading">
+              <h3 class="card-title"></h3>
+             
+            </div>
+            <div class="card-body">
+                <h3>It looks like this is your first time signing in.  If you are an exisiting Enxo subscriber, or you are just signing up as an accountability partner, click the button below to go to your dashboard.  If you are interested in an Enxo subscription, then check out one of our options below.</h3><br />
+                <a class="btn btn-lg btn-success" href="/dashboard">Dashboard</a> 
+            </div>
+          </div>
+        </div><!-- End column 2 -->
+
+        <div class="col-md-6"><!-- Start column 2 -->
+          <div class="card card-default widget text-center">
+            <div class="card-heading">
+
+              <h3>Individual</h3><br /><h4>  <strong>$11/month</strong> or<br />
+                <strong> $132/year</strong>
+               </h4>
+            </div>
+            <div class="card-body">
+              <h4>This is our basic individual plan which covers up to 3 of your personal devices. You can choose to have an accountability partner who will receive weekly emailed reports.</h4>
+                <form id="monthly" action="/subscribe/monthly" method="POST">
+                {{ csrfField() }}
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_live_Bi2MabrHOBHmRogvBzy9IQel"
+                        data-amount="1100"
+                        data-name="Enxo Monthly Subscription"
+                        data-description="Monthly Subscription"
+                        data-image=""
+                        data-label="Monthly Subscription"
+                        data-email="{{ email }}"
+                        data-locale="auto">
+                    </script>
+                </form>
+                <br />
+                  <form action="/subscribe/yearly" method="POST">
+                  {{ csrfField() }}
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="pk_live_Bi2MabrHOBHmRogvBzy9IQel"
+                      data-amount="13200"
+                      data-name="Enxo Early Adopter Plan"
+                      data-description="1 year of Enxo service"
+                      data-image=""
+                      data-label="Yearly Subscription"
+                      data-email="{{ email }}"
+                      data-id="12"
+                      data-locale="auto">
+                  </script>
+                </form>
+            </div>
+          </div>
+        </div><!-- End column 2 -->
+
+        <div class="col-md-6"><!-- Start column 2 -->
+          <div class="card card-default widget text-center">
+            <div class="card-heading">
+
+              <h3>Family Plan</h3>
+            </div>
+            <div class="card-body">
+              <h3>Coming soon</h3>
+            </div>
+          </div>
+        </div><!-- End column 2 -->
+
+
+</div>
+@endsection

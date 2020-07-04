@@ -1,0 +1,87 @@
+<div class="page-sidebar toggled sidebar">
+  <nav class="sidebar-collapse d-none d-md-block">
+    <i class="ion ion-ios-arrow-forward show-on-collapsed"></i>
+    <i class="ion ion-ios-arrow-back hide-on-collapsed"></i>
+  </nav>
+  <ul class="nav nav-pills nav-stacked" id="sidebar-stacked">
+    <li class="d-md-none">
+      <a href="#" class="sidebar-close"><i class="ion ion-ios-arrow-left"></i></a>
+    </li>
+
+    <li class="nav-item">
+      @if(allUser)
+      <input type="hidden" id="loggedInUsersId" value="{{ myID }}" />
+      <input type="hidden" id="hidden_device_id" value="{{ allUser[0].userId }}">
+      <input type="hidden" id="hidden_user_name" value="{{ allUser[0].name }}">
+      <input type="hidden" id="deviceId" value="{{ defaultDevice.id }}">
+      @else
+      <input type="hidden" id="loggedInUsersId" value="{{ myID }}" />
+
+      <input type="hidden" id="hidden_device_id" value="{{ user }}">
+      <input type="hidden" id="hidden_user_name" value="{{ name }}">
+      <input type="hidden" id="deviceId" value="{{ defaultDevice.id }}">
+      @endif
+       <select id="names">
+         @if(allUser)
+
+           @each(user in allUser)
+           <option value="{{ user.userId }}">{{ user.name }}</option>
+           @endeach
+        @else
+
+          <option value="{{ user }}"> {{ name }}</option>
+        @endif
+       </select>
+      @unless(devArr)
+      <select id="dates">
+          <option value="0">This Week</option>
+          <option value="1">Last Week</option>
+          <option value="2">2 Weeks ago</option>
+          <option value="3">3 Weeks ago</option>
+          <option value="4">Last Month</option>
+      </select>
+      @endunless
+
+      @if(devArr)
+      <select id="devicesSelect">
+        @if(curDevice)
+
+        <option value="{{curDevice.id}}">{{curDevice.name}}</option>
+        @endif
+        @each(d in devArr)
+          @unless(d.id == curDevice.id)
+            <option value="{{d.id}}">{{d.name}}</option>
+          @endunless
+        @endeach
+      </select>
+      @endif
+
+    </li>
+    @if(userType === 'subscriber')
+    <li class="nav-item">
+      <a class="nav-container" data-toggle="collapse" data-parent="#sidebar-stacked" href="#p1">
+        <i class="ion ion-gear-b"></i> <span class="nav-text">My Device Setup </span>
+      </a>
+      <ul class="nav nav-pills nav-stacked collapse" id="p1">
+        <li class="nav-item"><a class="nav-link" href="/device/setup/ios"><i class="ion ion-iphone"></i> iPhone/iPad</a></li>
+        <li class="nav-item"><a class="nav-link" href="/device/setup/macos"><i class="ion ion-social-apple"></i> Mac OSx</a></li>
+        <li class="nav-item"><a class="nav-link" href="/device/setup/windows"><i class="ion ion-social-windows"></i> Windows</a></li>
+
+      </ul>
+    </li>
+    @endif
+
+
+    <li class="nav-item">
+      <a class="nav-container" href="/account">
+        <i class="ion ion-settings"></i> <span class="nav-text">My Account</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-container" href="/account">
+        <i class="ion ion-help-buoy"></i> <span class="nav-text">FAQ</span>
+      </a>
+    </li>
+  </ul>
+</div>

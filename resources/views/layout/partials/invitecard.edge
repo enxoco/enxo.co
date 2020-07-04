@@ -1,0 +1,102 @@
+  <div class="card card-default widget text-left animated" style="animation-delay: 0.37s;" id="invitationCard">
+    <div class="card-heading">
+      <div class="card-controls">
+        <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+        <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+      </div>
+      <h3 class="card-title">Invite Accountability partners</h3>
+    </div>
+      <div class="card-body" id="inviteCard">
+
+        <h4>
+
+          @if(toPartners.length > 0)
+            Would you like to invite another accountability partner?
+          @else
+            You don't currently have any accountability partners
+          @endif
+        </h4>
+          <p>Their is no limit to the number of people you can choose to be your accountability. Each person will need to register for a free Enxo accountability account. Once registered they will begin receiving a weekly emailed report containing your browsing habits and any suspicous activity.</p><br /><br />
+            <div id="accordion">
+              <h5 class="mb-0">
+                <button class="btn btn-default btn-lg" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Invite accountability</button><br />
+              </h5>
+
+                  <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                      Enter a name and email address below, then click Invite!<br />
+                      <hr>
+                      <form action="{{ route('requestPartner') }}" method="POST" id="inviteForm">
+                        {{ csrfField() }}
+                        <div class="form-group row">
+                          <div class="col-md-12">
+                            <input type="text"
+                            placeholder="Name"
+                            name="name"
+                            id="name"
+                            class="form-control"
+                            required
+                            value=""
+                            />
+                            <input type="hidden"
+                            name="managed_user_id"
+                            id="managed_user_id"
+                            value="{{ user }}"
+                            />
+                          </div>
+                        </div>
+                      <div class="form-group row">
+                        <div class="col-md-12">
+                          <input type="email"
+                          placeholder="Email Address"
+                          name="email"
+                          id="email"
+                          class="form-control"
+                          required
+                          value=""
+
+                          />
+                        </div>
+                      </div>
+                        <div class="form-group row">
+                          <div class="col-md-12"></div>
+                          <div class="col-md-12">
+                            <button type="submit" class="btn btn-success btn-lg" id="inviteButton">
+                              <i class="fa fa-lock"></i>Invite</button>
+
+
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <script>
+          var loadingAnimation = '<div id="loadingAnimation"><svg version="1.1" id="L3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" \
+          viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve" \
+          style="width:100px; height:100px; margin:20px"> \
+          <circle fill="none" stroke="#203a45" stroke-width="4" cx="50" cy="50" r="44" style="opacity:1;"/> \
+          <circle fill="#fff" stroke="#2faeed" stroke-width="3" cx="8" cy="54" r="6" > \
+          <animateTransform \
+            attributeName="transform" \
+            dur="2s" \
+            type="rotate" \
+            from="0 50 48" \
+            to="360 50 52" \
+            repeatCount="indefinite" /> \
+          </circle> \
+          </svg> \
+          <h2 style="text-align: center;">We"re sending your invitation now.</h2> \
+          </div>'
+          var inviteButton = document.getElementById("inviteButton")
+          inviteButton.addEventListener("click", function() {
+            document.getElementById("inviteForm").submit();
+            document.getElementById('inviteCard').innerHTML += loadingAnimation;
+
+          })
+
+
+
+          </script>

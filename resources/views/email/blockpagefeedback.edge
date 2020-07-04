@@ -1,0 +1,46 @@
+@layout('layout.master')
+@section('content')
+
+@if(help)
+
+<h3>URL: {{ help.url }} </h3>
+<h3>User: {{ help.user }} </h3>
+<h3>Category: {{ help.cat }} </h3>
+<h3>Matched words: {{ help.tally }} </h3>
+<h3>Scores: {{ help.scores }} </h3>
+
+@else
+<!-- Per Page information -->
+
+<header id="page-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-10 page-title-wrapper">
+        <h1 class="page-title">Thanks for the feedback!</h1>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <div id="page-body">
+    <div class="container-fluid">
+      <div id="page-content">
+        <div class="row"><!-- Start Row -->
+
+          <div class="col-md-8 mx-auto"><!-- Start of invite card -->
+            <div class="card card-default widget text-center">
+            <div class="card-body"><br /><br />
+
+              <div class="alert role="alert">
+              <h2>We'll look into unblocking this site.  Please try again later
+              </div>
+              
+            </div>
+            </div>
+          </div> <!-- End Invite card -->
+</div>
+  <!-- end of page content -->
+@endif
+@endsection

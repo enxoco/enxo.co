@@ -1,0 +1,67 @@
+@layout('layout.master')
+@section('content')
+
+<div class="page-body collapsed">
+  <div class="container-fluid">
+
+    <div class="page-content">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card card-default widget animated text-center">
+            <div class="card-heading bold"><img src="https://image.flaticon.com/icons/svg/1055/1055660.svg" width="100px"></img></div>
+            <div class="card-body">
+
+
+              <div class="row">
+                <div class="col-lg-12 text-center">
+                  <div class="card card-default card-border no-shadow">
+                    <div class="card-body">
+                      @include('layout.alerts')
+                        <form method="POST" action="{{ route('login.store') }}">
+                        <input type="hidden" value="{{ initial }}" name="initial"></input>
+                        {{ csrfField() }}
+                          <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="email">
+                            E-Mail Address
+                            </label>
+                            <div class="col-md-6">
+                              <input type="email" name="email" placeholder="Email" id="email" class="form-control {{ elIf('is-invalid', getErrorFor('email'), hasErrorFor('email')) }}" value="{{ old('email', '') }}" required>
+                                <div class="invalid-feedback">{{ getErrorFor('email') }}</div>
+                            </div>
+                          </div>
+                        <div class="form-group row">
+                          <label class="col-md-3 col-form-label" for="password">Password</label>
+                    <div class="col-md-6">
+                      <input type="password" name="password" placeholder="Password" id="password"
+                        class="form-control {{ elIf('is-invalid', getErrorFor('password'), hasErrorFor('password')) }}">
+                      <div class="invalid-feedback">{{ getErrorFor('password') }}</div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                      <button type="submit" class="btn btn-success btn-block btn-lg">
+                        <i class="fa fa-btn fa-sign-in"></i> Login
+                      </button>
+                      <div class="row justify-content-md-center">
+                        <a class="btn btn-link" href="{{ route('reset.form') }}">
+                          Forgot Your Password?
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" name="ref" value="{{ ref }}"/>
+              </form>
+                  </div>
+                </div>
+              </div><!-- end row -->
+            </div>
+          </div>
+        </div><!-- /.col-md-12 -->
+      </div><!--/row-->
+    </div>
+  </div>
+</div>
+
+@endsection

@@ -1,0 +1,176 @@
+@layout('layout.master')
+
+@section('content')
+<header id="page-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 mx-auto page-title-wrapper">
+        <h1 class="page-title text-center">My Profile {{page}}</h1>
+				@include('layout.alerts')
+
+      </div>
+    </div>
+  </div>
+</header>
+<div class="page-body">
+	<div class="container-fluid">
+		<div class="page-content">
+		<div class="row">
+				<div class="col-md-12 col-lg-6">
+					<div class="card card-default widget text-left animated" style="animation-delay: 0.37s;">
+					  <div class="card-heading">
+					    <h3 class="card-title">Profile Information</h3>
+					  </div>
+					  <div class="card-body">
+							<form action="{{ route('account.update') }}" method="post">
+								{{ csrfField() }}
+								<div class="form-group row">
+									<label for="email" class="col-md-3 col-form-label">Email</label>
+									<div class="col-md-7">
+										<input type="email" placeholder="email" name="email" id="email"
+											class="form-control {{ elIf('is-invalid', getErrorFor('email'), hasErrorFor('email')) }}"
+										  value="{{ old('email', account.email || '') }}" required>
+										<div class="invalid-feedback">{{ getErrorFor('email') }}</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="name" class="col-md-3 col-form-label">Name</label>
+									<div class="col-md-7">
+										<input type="text" placeholder="name" name="name" id="name"
+											class="form-control {{ elIf('is-invalid', getErrorFor('name'), hasErrorFor('name')) }}"
+											value="{{ old('name', account.name || '') }}" required>
+										<div class="invalid-feedback">{{ getErrorFor('name') }}</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="username" class="col-md-3 col-form-label">Username</label>
+									<div class="col-md-7">
+										<input type="text" placeholder="username" name="username" id="username" class="form-control"
+										 value="{{ old('username', account.username || '') }}"/>
+									 </div>
+								 </div>
+
+								<div class="form-group row">
+									<div class="col-md-12 col-lg-6"></div>
+									<div class="col-md-12 col-lg-12">
+										<button type="submit" class="btn btn btn-success btn-lg">
+											 Update <br /> Profile
+										</button>
+									</div>
+								</div>
+							</form>
+					  </div>
+					</div><!--/card-->
+					<div class="card card-default widget text-left animated" style="animation-delay: 0.37s;">
+						<div class="card-heading">
+							<h3 class="card-title">
+								Manage Your Avatar Here
+							</h3>
+						</div>
+						<div class="card-body">
+							<form action="{{ route('account.updateAvatar') }}" method="post" enctype="multipart/form-data">
+								{{ csrfField() }}
+								<div class="form-group row">
+									<div class="col-md-3 col-form-label">
+										<img src="{{ account.toJSON().avatarpath }}" width="100" height="100"
+											 class="rounded-circle">
+									</div>
+									<div class="col-md-7">
+										<br>
+										<label for="avatar" class="custom-file col-sm-4">
+											<input type="file" id="avatar" name="avatar" class="custom-file-input">
+											<span class="custom-file-control"></span>
+										</label>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-12 col-lg-6"></div>
+									<div class="col-md-12 col-lg-12">
+										<button type="submit" class="btn btn btn-success btn-lg">
+											Change<br />   Avatar</button>
+									</div>
+								</div>
+							</form>
+						</div><!--/card-->
+					</div>
+
+				</div><!--/col-->
+				<div class="col-md-12 col-lg-6">
+					@include('layout.partials.invitecard')
+
+
+					<div class="card card-default widget text-left animated" style="animation-delay: 0.37s;">
+					  <div class="card-heading">
+					    <h3 class="card-title">
+								Update Password
+					    </h3>
+					  </div>
+					  <div class="card-body">
+							<form action="{{ route('account.updatePwd') }}" method="POST">
+								{{ csrfField() }}
+								<div class="form-group row">
+									<label for="password" class="col-md-3 control-label">New Password</label>
+									<div class="col-md-7">
+										<input type="password" placeholder="Password" name="password" id="password" class="form-control">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="password_confirmation" class="col-md-3 col-form-label">Confirm Password</label>
+									<div class="col-md-7">
+										<input type="password" placeholder="Confirm Password" name="password_confirmation" id="password_confirmation" class="form-control">
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-md-12 col-lg-6"></div>
+									<div class="col-md-12 col-lg-12">
+										<button type="submit" class="btn btn-success btn-lg">
+											Update<br /> Password
+										</button>
+									</div>
+								</div>
+							</form>
+					  </div>
+					</div>
+				</div><!--/col 2-->
+				<div class="col-md-12 col-lg-6">
+
+
+					<div class="card card-default widget text-left animated" style="animation-delay: 0.37s;">
+						<div class="card-heading">
+							<h3 class="card-title">
+								Delete Account
+							</h3>
+						</div>
+						<div class="card-body">
+							<div class="col">
+								Deleting your account will not cancel your subscription or remove the Enxo filtering software from your device.  In order to full cancel your account and remove the software you will need to contact us via email at mike@enxo.co
+							</div>
+							<div class="col">
+								<a href="{{ route('account.delete') }}" class="btn btn-danger btn-lg"
+									 onclick="return confirm('Are you sure? Do you really want to delete your Account?')">
+									<i class="fa fa-trash"></i> Delete my account
+								</a>
+							</div>
+						</div>
+					</div>
+				</div><!--/col 3-->
+
+				<div class="col-md-12">
+
+				</div><!--/col 4-->
+
+				<h3 class="my-4"></h3>
+				<div class="row">
+
+				</div>
+
+				<h3 class="my-4"></h3>
+				<div class="row">
+
+				</div>
+				<br>
+		</div>
+	</div>
+</div>
+</div>
+@endsection

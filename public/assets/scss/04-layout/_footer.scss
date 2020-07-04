@@ -1,0 +1,20 @@
+/***********************************************
+* Footer
+***********************************************/
+#footer {
+	margin: 12px 0 4px;
+	color: #565656;
+	position: absolute;
+	bottom: 0rem;
+
+	a {
+		color: #565656;
+		text-decoration: none;
+		opacity: 0.7;
+
+		&:hover,
+		&:focus {
+			opacity: 1;
+		}
+	}
+}

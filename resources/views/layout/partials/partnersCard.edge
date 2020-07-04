@@ -1,0 +1,55 @@
+<div class="card card-default widget animated dismissable" style="animation-delay: 0.37s;" id="partners">
+  <div class="card-heading">
+    <div class="card-controls">
+      <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+      <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+    </div>
+    <h3 class="card-title">My Accountability Partners</h3>
+
+  </div>
+  <div class="card-body">
+    <div class="media-items">
+
+      @each(p in toPartners)
+              <div class="media">
+                <div class="media-left mr-1">
+                  <a href="#">
+                    @if(p.avatar === null)
+                    <img class="media-object img-circle" src="https://www.gravatar.com/avatar/bea8c854dc403125efce3fdbeaa1c039?d=mm&s=60" width="48" height="48">
+                    @else
+                    <img class="media-object img-circle" src="{{ p.avatar }}" width="48" height="48">
+                    @endif
+                  </a>
+                </div>
+                <div class="media-body mb-3">
+                  <p class="media-heading weight-regular mb-0">
+                    {{ p.name }}
+                    <span class="pull-right text-sm"><span class="badge badge-success">Confirmed</span></span>
+                  </p>
+                  <span class="text-sm text-muted">{{ p.name }} is able to view your activity</span>
+                </div>
+              </div>
+
+      @endeach
+      @each(p in pendingPartners)
+              <div class="media">
+                <div class="media-left mr-1">
+                  <a href="#">
+                    <img class="media-object img-circle" src="https://www.gravatar.com/avatar/bea8c854dc403125efce3fdbeaa1c039?d=mm&s=60" width="48" height="48">
+
+                  </a>
+                </div>
+                <div class="media-body mb-3">
+                  <p class="media-heading weight-regular mb-0">
+                    {{ p.requestee_email }}
+                    <span class="pull-right text-sm"><span class="badge badge-warning">Pending</span></span>
+                  </p>
+                  <span class="text-sm text-muted">{{ p.requestee_email }} has not accepted your request yet.</span>
+                </div>
+              </div>
+
+      @endeach
+
+        </div>
+      </div>
+    </div>

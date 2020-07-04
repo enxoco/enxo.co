@@ -1,0 +1,106 @@
+<div class="card card-default widget text-center animated" style="animation-delay: 0.37s;">
+  <div class="card-heading">
+    <div class="card-controls">
+      <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+      <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+    </div>
+    <h3 class="card-title">General Restrictions</h3>
+
+  </div>
+  <div class="card-body">
+
+    <h6 class="restriction-label">Internet Access</h6>
+    @if(device.tags.includes('blockInternet') == true || device.tags.includes('blockInternet'))
+    <button type="button" id="blockInternet" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+       <div class="handle"></div>
+     </button>
+     @else
+      <button type="button" id="blockInternet" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+        <div class="handle"></div>
+      </button>
+      @endif
+    <br />
+    <br />
+
+    <h6 class="restriction-label">Images and Videos</h6>
+    @if(device.tags.includes('blockImage') == true || device.tags.includes('blockImage'))
+     <button type="button" id="blockImage" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+       <div class="handle"></div>
+     </button>
+     @else
+      <button type="button" id="blockImage" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+        <div class="handle"></div>
+      </button>
+      @endif
+    <br />
+    <br />
+
+      <h6 class="restriction-label">Allow App Store</h6>
+      @if(device.tags.includes('disableAppStore') == true)
+       <button type="button" id="disableAppStore" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="disableAppStore" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+      <h6 class="restriction-label">Allow Safari</h6>
+      @if(device.tags.includes('disableSafari') == true || device.tags.includes('disableBroswers'))
+       <button type="button" id="disableSafari" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="disableSafari" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+        <br />
+        <br />
+
+      <h6 class="restriction-label">Allow Youtube</h6>
+      @if(device.tags.includes('disableYoutube') == true)
+       <button type="button" id="disableYoutube" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="disableYoutube" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+
+
+    @unless(device.isSupervised == false)
+
+        <h6 class="restriction-label"> Allow user to <br /> erase their phone</h6>
+        @if(device.tags.includes('eraseAllContentAndSettingss') == true)
+         <button type="button" id="eraseAllContentAndSettings" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+           <div class="handle"></div>
+         </button>
+         @else
+          <button type="button" id="eraseAllContentAndSettings" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+            <div class="handle"></div>
+          </button>
+          @endif
+        <br />
+        <br />
+      <h6 class="restriction-label">iMessage:</h6>
+        @if(device.tags.includes('disableiMessage') == true)
+         <button type="button" id="disableiMessage" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+           <div class="handle"></div>
+         </button>
+         @else
+          <button type="button" id="disableiMessage" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+            <div class="handle"></div>
+          </button>
+          @endif
+        <br />
+        <br />
+        @endunless
+
+     </div><!--/card-body-->
+   </div><!--/card-->

@@ -1,0 +1,128 @@
+@layout('layout.master')
+
+@section('content')
+      <!-- Per Page information -->
+
+      <header id="page-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-8 page-title-wrapper">
+              <h1 class="page-title">Enxo Admin</h1>
+            </div>
+
+          </div>
+        </div>
+      </header>
+
+      <div id="page-body">
+        <div class="container-fluid">
+
+      <!-- start of page content -->
+			<div id="page-content">
+  				<div class="row">
+  					@each(device in claimedDevices)
+
+    				<div class="col-md-3">
+      					<div class="card card-default">
+      						<form method="POST" action="{{ route('admin.updateDevice') }}">
+        					{{ csrfField() }}
+        					<div class="card-heading">
+
+          					<h2 class="card-title">
+        						        	  <div class="form-group">
+        									    <select class="form-control" id="exampleSelect1" name="userId">
+        									    	<option selected="{{device.userId}}" value="{{device.userId}}">{{ device.name }}</option>
+        									    	@each(user in users)
+        									    		<option value="{{ user.id }}" name="user_id">{{ user.name }}</option>
+        									    	@endeach
+        									    </select>
+        									  </div>
+
+          					</h2>
+        					</div>
+        					<div class="card-body">
+        									    <label for="exampleSelect1">Device Id</label>
+        							        	<input type="text" name="deviceId" value="{{ device.deviceId }}">
+        							        	<label for="exampleSelect1">Serial Number</label>
+        							        	<input type="text" name="serial_number" value="{{device.serial_number}}">
+        							        	<label>Device Type</label>
+          							        	<select class="form-control" id="exampleSelect1" name="device_type">
+            									    	<option selected="{{device.device_type}}" value="{{device.device_type}}">{{ device.device_type }}</option>
+                                    <option>iPad</option>
+            									    	<option>iPhone</option>
+                                    <option>iPhone 6</option>
+                                    <option>iPhone 6s</option>
+                                    <option>iPhone 6s Plus</option>
+                                    <option>iPhone 7</option>
+                                    <option>iPhone 7s</option>
+                                    <option>iPhone 7s Plus</option>
+                                    <option>iPhone 8</option>
+                                    <option>iPhone 8 Plus</option>
+                                    <option>iPhone X</option>
+            									    	<option>MacBook</option>
+                                    <option>MacBook Air</option>
+                                    <option>MacBook Pro</option>
+        									    </select></li>
+        							        	<br />
+                                  <a href="http://localhost:3535/api/report/tophits/{{device.userId}}/100/1" class="btn btn-success">Top Hits</a>
+                                  <a href="http://localhost:3535/api/report/blocks/explicit/{{device.userId}}/100/1" class="btn btn-success">Blocked Sites</a>
+                                  <a href="http://localhost:3535/api/report/searches/explicit/{{device.userId}}/100/1" class="btn btn-success">FLagged Searches</a>
+                                  <a href="http://localhost:3535/api/report/tophits/{{device.userId}}/100/1" class="btn btn-success">Top Hits</a>
+                                  <a href="http://localhost:3535/api/report/daily/{{device.userId}}/0" class="btn btn-success">Today</a>
+                                  <a href="http://localhost:3535/api/report/daily/{{device.userId}}/1" class="btn btn-success">Yesterday</a>
+
+
+        							        	<button type="submit" class="btn btn-success btn-lg">Save</button>
+        							        </form>
+        					</div>
+
+    					</div>
+					</div>
+					@endeach
+
+    				<div class="col-md-6">
+      					<div class="card card-default">
+      						<form method="POST" action="{{ route('admin.addDevice') }}">
+        					{{ csrfField() }}
+        					<div class="card-heading">
+
+          					<h2 class="card-title">Add Device</h2>
+        					</div>
+        					<div class="card-body">
+        						<div class="form-group">
+        									    <select class="form-control" id="exampleSelect1" name="userId">
+        									    	@each(user in users)
+        									    		<option value="{{ user.id }}" name="user_id">{{ user.name }}</option>
+        									    	@endeach
+        									    </select>
+        									  </div>
+        									    <label for="exampleSelect1">Device Id</label>
+        							        	<input type="text" name="deviceId">
+        							        	<label for="exampleSelect1">Serial Number</label>
+        							        	<input type="text" name="serial_number">
+        							        	<label>Device Type</label>
+        							        		<select class="form-control" id="exampleSelect1" name="device_type">
+        									    	<option selected="{{device.device_type}}" value="{{device.device_type}}">{{ device.device_type }}</option>
+        									    	<option>iPhone</option>
+        									    	<option>MacBook</option>
+        									    	<option>iPad</option>
+
+        									    </select></li>
+        							        	<br />
+        							        	<button type="submit" class="btn btn-success btn-block">Add</button>
+        							        </form>
+        					</div>
+
+    					</div>
+					</div>
+    			</div>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+@endsection

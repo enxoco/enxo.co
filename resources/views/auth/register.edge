@@ -1,0 +1,110 @@
+@layout('layout.master')
+@section('content')
+<header id="page-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8 page-title-wrapper">
+        <h1 class="page-title">
+</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div id="page-body collapsed">
+  <div class="container-fluid">
+    <div id="page-content">
+              <div class="row">
+                <div class="col">
+                  <div>
+                    <div class="card-body">
+                      @include('layout.alerts')
+                      @if(created != 1)
+                        @include('layout.partials.registrationform')
+                      @else
+                        @include('layout.partials.paymentform')
+                      @endif
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="">
+                    <div class="card-body">
+
+                      @if(created === 1 && subscribed === 0)
+                        <h4>
+                          Subscription types
+                        </h4>
+                        <hr>
+                        <h4>Monthly</h4>
+                        <p>
+                          Enter your card information to begin your subscription.
+                          You can choose to pay monthly or yearly.  If you choose
+                          a monthly subscription you will be billed today and on
+                           the <strong>{{ todayDate }}</strong> of every month.
+                         </p>
+                         <h4>Yearly</h4>
+                         <p>
+                           If you choose our yearly subscription you will be billed<strong> $132 today</strong>
+                           and on the next year on <strong>{{ yearDate }}</strong>
+                         </p>
+                       @else
+
+                       <div class="col">
+                          <div class="card flex-fill w-100">
+                            <div class="card-header">
+                              <h5 class="card-title mb-0">Step 1 - Register an account.</h5>
+                            </div>
+                            <div class="card-body">
+                                Use the signup form to create your account.  Then you will be redirected to step 2.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                            <div class="card flex-fill w-100">
+                              <div class="card-header">
+                                <h5 class="card-title mb-0">Step 2 - Enter payment information.</h5>
+                              </div>
+                              <div class="card-body">
+                                  Our individual plan is $11 a month or $132.  By putting in your credit card and clicking Confirm you will be subscribing to our monthly or yearly plan.  You will be billed today and then once a month or once a year depending on your subscription.
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col">
+                              <div class="card flex-fill w-100">
+                                <div class="card-header">
+                                  <h5 class="card-title mb-0">Step 3 - Download and install configuration profile.</h5>
+                                </div>
+                                <div class="card-body">
+                                  Because of limitations put in place by Apple, we do not offer an iOS app.  Instead we use a combination of Mobile device management, VPN and proxy server technologies to monitor and filter your devices.  Once your account is created you will be able to login to your user dashboard.  From there you will find a link to walk you through the process of setting up your device as well as adding accountability partners.  If you have any questions/issues please do not hesitate to contact us at <strong>support@enxo.co</strong>
+                                </div>
+                              </div>
+                            </div>
+                        
+                          
+                          <h4>
+                          {{script('assets/js/registration-form.js')}}
+                        
+                        <hr>
+
+                      @endif
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+<script>
+function stopRKey(evt) {
+  var evt = (evt) ? evt : ((event) ? event : null);
+  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+}
+
+document.onkeypress = stopRKey;
+
+</script>
+@endsection

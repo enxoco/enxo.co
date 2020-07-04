@@ -1,0 +1,1 @@
+web: ENV_SILENT=false node server.js

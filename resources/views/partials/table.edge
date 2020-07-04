@@ -1,0 +1,339 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+<script>
+
+  $( "#calendar" ).datepicker({
+  dateFormat: "yy-mm-dd"
+});
+
+$( "#calendar").change(function() {
+  runTable($('#user').val(), $(this).val())
+
+})
+
+  $(function() {
+      $( "#f-accordion" ).accordion({
+        collapsible: true,
+        heightStyle: "content"
+      });
+    });
+
+  //Alert button
+  $('.button').click(function(){
+      $('.alert').slideToggle();
+  });
+
+  $('i.close').click(function(){
+      $('.alert').slideToggle();
+  });
+    
+    
+   //JS table filter
+   (function(document) {
+    'use strict';
+
+    var LightTableFilter = (function(Arr) {
+
+      var _input;
+
+      function _onInputEvent(e) {
+        _input = e.target;
+        var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+        Arr.forEach.call(tables, function(table) {
+          Arr.forEach.call(table.tBodies, function(tbody) {
+            Arr.forEach.call(tbody.rows, _filter);
+          });
+        });
+      }
+
+      function _filter(row) {
+        var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+        row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+      }
+
+      return {
+        init: function() {
+          var inputs = document.getElementsByClassName('light-table-filter');
+          Arr.forEach.call(inputs, function(input) {
+            input.oninput = _onInputEvent;
+          });
+        }
+      };
+    })(Array.prototype);
+
+    document.addEventListener('readystatechange', function() {
+      if (document.readyState === 'complete') {
+        LightTableFilter.init();
+      }
+    });
+
+  })(document);
+  //Filter Table
+
+</script>
+<script>
+  /*
+  *
+  * This is the script used to load the table when a username is passed in to the page and a date is chosen from the calendar.
+  * There is a seperate script for handling reports from a select box.
+  */
+
+function runTable(user, date) {
+
+
+  // var user = $('#user').val()
+
+
+    //Function to extract the hostname from a url.  Used to shorten the results shown in the URL column of our table.
+    function getHostName(url) {
+        var match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+        if (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
+          return match[2];
+        }
+        else {
+            return null;
+        }
+    }
+
+    $.ajax({
+      url:"/assets/google-searches.log",
+      dataType:"text",
+      success: function(data)
+      {
+        var obj = data.split(/\r?\n|\r/);
+        var array = []
+                    $('#google-searches').empty()
+
+
+        for (var i = 0; i < obj.length -1; i++) {
+          e = obj[i].split(',')
+
+          if (e[1].indexOf(user) > -1 && e[2].length > 3 ){
+            console.log(obj[i])
+            console.log(e[2].length)
+            $('#google-searches').append('Date: ' + e[0] + ' Search Term: ' + e[2] + '<br />')
+          }
+        }
+
+      }
+    })
+
+
+        $.ajax({
+          url:"/assets/no-images-access.log",
+          dataType:"text",
+          success:function(data)
+          {
+            console.log('hello')
+
+
+            // Check if our tables have already been initialized.
+            if ( $.fn.DataTable.isDataTable( '#allowed' ) ) {
+              $('#allowed').DataTable().destroy();
+              $('#blocked').DataTable().destroy();
+              $('#sslBumped').DataTable().destroy();
+
+            }
+
+            // Set up our arrays
+            var test = data.split(/\r?\n|\r/);
+            var dataSet = [];
+            var allowed = [];
+            var blocked = [];
+            var sslBumped = [];
+
+
+            // Seperate out the entries into our arrays.
+            for (var i = 0; i < test.length; i++) {
+
+                  var d = test[i].split(',');
+
+                if (d[0].includes(date) && d[1].indexOf(user) > -1) {
+
+                if (d[2] == 'allow') {
+                  if(d[3].includes('api.weather.com') || d[3].includes('-ssl.ls.apple.com') || d[3].includes('http://play.googleapis.com:443') || d[3].includes('inbox.google.com') || d[3].includes('.apple.com') || d[3].includes('google.com/carddav/')) {
+                    console.log('skipping known safe site')
+                  } else {
+                    allowed.push(d)
+ 
+                  }
+                } 
+
+                else if (d[2] == 'block' ) {
+                  blocked.push(d);
+                } 
+
+                else if (d[2] == 'ssl-bump') {
+                  sslBumped.push(d)
+                }
+                }
+
+              
+              dataSet.push(test[i].split(','))
+
+            
+            }
+
+        
+            //Define our list of table headings.  
+            var headings = [
+                  "Date",
+                  "UserName",
+                  "Action",
+                  "Url",
+                  "HTTP Method",
+                  "HTTP Response Status",
+                  "Content-Type",
+                  "Content-Length",
+                  "Modified",
+                  "Rules Matched",
+                  "Scores",
+                  "Categories Matched",
+                  "Page Title",
+                  "Ignored Categories",
+                  "User Agent header",
+                  "HTTP Version",
+                  "Referrer header",
+                  "Client Platform"
+                  ]
+
+            // var hideCols = $('#hideColsHeader');
+              
+            //   for(i=0; i<headings.length; i++) {
+            //     $('#hideColsHeader').append('<label>'+headings[i]+'<input type="checkbox" id="'+headings[i]+'"></label>  | ')
+            //     console.log(headings[i])
+                
+            //     $('#hideColsHeader').append($('#'+headings[i])).change(function() {
+            //       table.columns([i]).visible(!$(this).is(':checked'))
+            //     });
+            //   }
+
+
+        var table = $('#allowed').DataTable( {
+          data: allowed,
+          pagingType: "simple",
+          columnDefs: [ 
+          {
+            targets: 0,
+            title: 'Time',
+              render: function (data, type, row) {
+              var date = data.split(" ")[1];
+              var hourEnd = date.indexOf(":");
+              var H = +date.substr(0, hourEnd);
+              var h = H % 12 || 12;
+              var ampm = H < 12 ? "AM" : "PM";
+              date = h + date.substr(hourEnd, 3) + " " + ampm;
+              return date + '<input type="hidden" value="'+data+'">';
+          }
+        },
+        {
+          targets: 1,
+          title: 'Device'
+        },
+        {
+          targets: 2,
+          title: 'Action',
+          visible: false
+        },
+        {
+            targets: 3, //Target the URL column
+            title: 'Website',
+            render: function ( data, type, row ) {
+                return '<div class="tooltime">' + getHostName(data) + '<span class="tooltimetext">'+data+'</span></div>';
+            }, 
+          },
+          // {
+          //   targets: 16, //Title of page
+          //   title: 'Title',
+          // }
+        ],
+      } );
+      
+      
+      $('#blocked').DataTable({
+          data: blocked,
+          columnDefs: [ 
+          {
+            targets: 0,
+            title: 'Time',
+              render: function (data, type, row) {
+              var date = data.split(" ")[1];
+              var hourEnd = date.indexOf(":");
+              var H = +date.substr(0, hourEnd);
+              var h = H % 12 || 12;
+              var ampm = H < 12 ? "AM" : "PM";
+              date = h + date.substr(hourEnd, 3) + " " + ampm;
+              return date + '<input type="hidden" value="'+data+'">';
+          }
+        },
+        {
+          targets: 1,
+          title: 'Device'
+        },
+        {
+          targets: 2,
+          title: 'Action',
+          visible: false
+        },
+        {
+            targets: 3, //Target the URL column
+            title: 'Website',
+            render: function ( data, type, row ) {
+                return '<div class="tooltime">' + getHostName(data) + '<span class="tooltimetext">'+data+'</span></div>';
+            }, 
+          },
+        ],
+      } );
+      
+      
+      $('#sslBumped').DataTable({
+          data: sslBumped,
+          columnDefs: [ {
+            targets: 3, //Target the URL column
+            render: function ( data, type, row ) {
+                return '<div class="tooltime">' + getHostName(data) + '<span class="tooltimetext">'+data+'</span></div>';
+            }
+        } ],
+          columns: [
+              { title: "Time" },
+              { title: "UserName" },
+              { title: "Action" },
+              { title: "Url" },
+              { title: "HTTP Method" },
+              { title: "HTTP Response Status" },
+              { title: "Content-Type" },
+              { title: "Content-Length" },
+              { title: "Modified" },
+              { title: "Rules Matched" },
+              { title: "Scores" },
+              { title: "Categories Matched" },
+              { title: "Page Title" },
+              { title: "Ignored Categories" },
+              { title: "User Agent header" },
+              { title: "HTTP Version" },
+              { title: "Referrer header" },
+              { title: "Client Platform" }
+          ]
+      });
+          }
+        })
+
+ $('#dateVisible').on( 'click', function (e) {
+        e.preventDefault();
+ 
+        // Get the column API object
+        var column = table.column( $(this).attr('data-column') );
+ 
+        // Toggle the visibility
+        column.visible( ! column.visible() );
+    } );
+
+
+
+  };
+
+</script>

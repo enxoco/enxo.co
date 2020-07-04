@@ -1,0 +1,23 @@
+API documentation.
+
+
+#Top sites visited for user over a time period.  This will return a JSON response, however it will also save the response to a file under /var/log/redwood/saved-reports/top-hits/:username/:year/:month/:start_day-end_day.json
+
+http://localhost:3333/api/report/2018-01-22/2018-01-28/628252148018393404/20
+
+
+This should be automated somehow and run from a bash script or a cron job once a week.  Something like this would work for now:
+
+
+for i in `awk '{print$1}' /tmp/users.list`; do for x in {0..4}; do echo $i $x; done; done
+
+$: time 'for i in `awk '{print $1}' /tmp/users.list`; do for x in {0..4}; echo curl http://http://localhost:3333/api/report/full/weekly/$i/$x; done'
+
+
+
+#Full Daily report
+http://localhost:3333/api/report/full/daily/:date/:user
+
+
+#Full weekly report
+http://localhost:3333/api/report/full/weekly/2018-01-31/2018-02-04/MikeConrad_iPhone

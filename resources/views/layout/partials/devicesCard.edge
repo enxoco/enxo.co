@@ -1,0 +1,52 @@
+
+        {{-- @if(devices.length != 0) --}}
+        <div class="card card-default widget animated dismissable" style="animation-delay: 0.37s;">
+          <div class="card-heading">
+            <div class="card-controls">
+              <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+              <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+            </div>
+            <h3 class="card-title" id="deviceHeading"><span id="curName">{{ name.split(" ")[0] }}</span>'s Devices
+              <span id="status"></span>
+            </h3>
+          </div>
+          <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Device Type</th>
+                <th>Serial Number</th>
+                <th>Last Connected</th>
+              </tr>
+            </thead>
+            <tbody id="deviceTable">
+              @if(devices)
+
+                @each(d in devices)
+                  <tr>
+                    <td> {{ d.device_type }} </td>
+                    <td>{{ d.serial_number }} </td>
+                    <td><span class="badge badge-success">Connected</span></td>
+
+                  </tr>
+                @endeach
+                @else
+                You don't currently have any devices enrolled
+              @endif
+              @if(smDevices)
+
+                @each(s in smDevices)
+                <tr>
+                  <td>{{ s.systemModel }}</td>
+                  <td>{{ s.name }}</td>
+                  <td>{{s.lastConnected}}</td>
+
+                </tr>
+                @endeach
+                @endif
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>

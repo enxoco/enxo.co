@@ -1,0 +1,79 @@
+<div class="card card-default widget text-center animated" style="animation-delay: 0.37s;">
+  <div class="card-heading">
+    <div class="card-controls">
+      <a href="#" class="widget-minify"><i class="fa fa-chevron-up"></i></a>
+      <a href="#" class="widget-close"><i class="fa fa-times"></i></a>
+    </div>
+    <h3 class="card-title">Web browsers</h3>
+
+  </div>
+  <div class="card-body">
+
+      <h6 class="restriction-label">Google Chrome</h6>
+      @if(device.tags.includes('disableGoogleChrome') == true || device.tags.includes('disableBrowsers'))
+        <button type="button" id="disableGoogleChrome" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="disableGoogleChrome" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+
+
+      <h6 class="restriction-label">Firefox</h6>
+      @if(device.tags.includes('disableFirefox') == true || device.tags.includes('disableBrowsers'))
+       <button type="button" id="disableFirefox" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="disableFirefox" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+
+      <!-- <h6 class="restriction-label">Aloha Browser</h6>
+      @if(device.tags.includes('disableAlohaBrowser') == true || device.tags.includes('disableBrowsers'))
+       <button type="button" id="disableAlohaBrowser" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="disableAlohaBrowser" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br /> -->
+
+      <h6 class="restriction-label">Opera Browser</h6>
+      @if(device.tags.includes('disableOperaBrowser') == true || device.tags.includes('disableBrowsers'))
+       <button type="button" id="disableOperaBrowser" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+       @else
+        <button type="button" id="disableOperaBrowser" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+        </button>
+        @endif
+      <br />
+      <br />
+
+    <!-- Only show these options to users of supervised device -->
+      <h6 class="restriction-label">All of the above</h6>
+
+      @if(device.tags.includes('disableBrowsers') == true || device.tags.includes('disableBrowsers'))
+       <button type="button" id="disableBrowsers" class="btn btn-lg btn-toggle active" data-toggle="button" aria-pressed="true" autocomplete="off">
+                           <div class="handle"></div>
+
+      @else
+       <button type="button" id="disableBrowsers" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+         <div class="handle"></div>
+       </button>
+      @endif
+    <!--End Supervised restrictions-->
+     </div><!--/card-body-->
+   </div><!--/card-->
