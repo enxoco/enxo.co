@@ -1,18 +1,12 @@
 'use strict'
 const Database = use('Database')
-
 const { validateAll } = use('Validator')
 const users = make('App/Services/UserService')
-const Partner = use('App/Models/Partner')
-const User = use('App/Models/User')
-const Device = use('App/Models/Device')
 const Env = use('Env')
 const Hashids = require('hashids');
 const hashids = new Hashids('my!123&Sus35per_Secret Hash murphTastic', 38, 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890');
 const dashboard = use('App/Models/Meraki')(Env.get('SM_API'));
-const moment = require('moment');
-const Mail = use('Mail')
-const Drive = use('Drive')
+
 
 class AccountController {
   async csvJSON (csv) {
